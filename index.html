@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="header">
+        <h1>This is just a game of chess.</h1>
+    </div>
+    <div class="board">
+        <div class="container-fluid">
+            <div class="row justify-content-center" id="row-1">
+                <span class="square" id="square-1"><img src="https://www.clipartmax.com/png/small/159-1599934_chess-piece-black-rook-chess-piece.png" alt="Chess Piece - Black Rook Chess Piece @clipartmax.com"></span>
+                <span class="square" id="square-2"><img src="https://www.clipartmax.com/png/small/160-1603738_clipart-knight-chess-piece-clipart-best-clipart-best-knight-chess-piece-clipart.png" alt="Clipart Knight Chess Piece Clipart Best Clipart Best - Knight Chess Piece Clipart @clipartmax.com"></span>
+                <span class="square" id="square-3"><img src="https://www.clipartmax.com/png/small/124-1240246_chess-tile-queen-clipart-bishop-chess-piece.png" alt="Chess Tile Queen Clipart - Bishop Chess Piece @clipartmax.com"></span>
+                <span class="square" id="square-4"><img src="https://www.clipartmax.com/png/small/204-2042941_clipart-queen-chess-piece-vector.png" alt="Clipart - Queen Chess Piece Vector @clipartmax.com"></span>
+                <span class="square" id="square-5"><img src="https://www.clipartmax.com/png/small/58-581746_chess-pieces-clip-art.png" alt="Chess Pieces Clip Art @clipartmax.com"></span>
+                <span class="square" id="square-6"><img src="https://www.clipartmax.com/png/small/124-1240246_chess-tile-queen-clipart-bishop-chess-piece.png" alt="Chess Tile Queen Clipart - Bishop Chess Piece @clipartmax.com"></span>
+                <span class="square" id="square-7"><img src="https://www.clipartmax.com/png/small/160-1603738_clipart-knight-chess-piece-clipart-best-clipart-best-knight-chess-piece-clipart.png" alt="Clipart Knight Chess Piece Clipart Best Clipart Best - Knight Chess Piece Clipart @clipartmax.com"></span>
+                <span class="square" id="square-8"><img src="https://www.clipartmax.com/png/small/159-1599934_chess-piece-black-rook-chess-piece.png" alt="Chess Piece - Black Rook Chess Piece @clipartmax.com"></span>
+            </div>
+            <div class="row justify-content-center" id="row-2">
+                <span class="square" id="square-9"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-10"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-11"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-12"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-13"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-14"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-15"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+                <span class="square" id="square-16"><img src="https://www.clipartmax.com/png/small/42-427459_free-vector-pawn-chess-piece-clip-art-chess-pieces.png" alt="Free Vector Pawn Chess Piece Clip Art - Chess Pieces @clipartmax.com"></span>
+            </div>
+            <div class="row justify-content-center" id="row-3">
+                <span class="square" id="square-17"></span>
+                <span class="square" id="square-18"></span>
+                <span class="square" id="square-19"></span>
+                <span class="square" id="square-20"></span>
+                <span class="square" id="square-21"></span>
+                <span class="square" id="square-22"></span>
+                <span class="square" id="square-23"></span>
+                <span class="square" id="square-24"></span>
+            </div>
+            <div class="row justify-content-center" id="row-4">
+                <span class="square" id="square-25"></span>
+                <span class="square" id="square-26"></span>
+                <span class="square" id="square-27"></span>
+                <span class="square" id="square-28"></span>
+                <span class="square" id="square-29"></span>
+                <span class="square" id="square-30"></span>
+                <span class="square" id="square-31"></span>
+                <span class="square" id="square-32"></span>
+            </div>
+            <div class="row justify-content-center" id="row-5">
+                <span class="square" id="square-33"></span>
+                <span class="square" id="square-34"></span>
+                <span class="square" id="square-35"></span>
+                <span class="square" id="square-36"></span>
+                <span class="square" id="square-37"></span>
+                <span class="square" id="square-38"></span>
+                <span class="square" id="square-39"></span>
+                <span class="square" id="square-40"></span>
+            </div>
+            <div class="row justify-content-center" id="row-6">
+                <span class="square" id="square-41"></span>
+                <span class="square" id="square-42"></span>
+                <span class="square" id="square-43"></span>
+                <span class="square" id="square-44"></span>
+                <span class="square" id="square-45"></span>
+                <span class="square" id="square-46"></span>
+                <span class="square" id="square-47"></span>
+                <span class="square" id="square-48"></span>
+            </div>
+            <div class="row justify-content-center" id="row-7">
+                <span class="square" id="square-49"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-50"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-51"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-52"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-53"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-54"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-55"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+                <span class="square" id="square-56"><img src="https://www.clipartmax.com/png/small/397-3970363_chess-piece-pawn-queen-knight-chess-piece-pawn-queen-knight.png" alt="Chess Piece Pawn Queen Knight - Chess Piece Pawn Queen Knight @clipartmax.com"></span>
+            </div>
+            <div class="row justify-content-center" id="row-8">
+                <span class="square" id="square-57"><img src="https://www.clipartmax.com/png/small/347-3478496_chess-piece-rook-staunton-chess-set-silhouette-rook.png" alt="Chess Piece Rook Staunton Chess Set Silhouette - Rook @clipartmax.com"></span>
+                <span class="square" id="square-58"><img src="https://www.clipartmax.com/png/small/320-3206451_chess-piece-knight-white-and-black-in-chess-knight.png" alt="Chess Piece Knight White And Black In Chess - Knight @clipartmax.com"></span>
+                <span class="square" id="square-59"><img src="https://www.clipartmax.com/png/small/320-3206529_chess-piece-bishop-king-chessboard-alfil-ajedrez-para-colorear.png" alt="Chess Piece Bishop King Chessboard - Alfil Ajedrez Para Colorear @clipartmax.com"></span>
+                <span class="square" id="square-60"><img src="https://www.clipartmax.com/png/small/350-3507978_chess-piece-king-queen-staunton-chess-set-queen-chess-piece-silhouette.png" alt="Chess Piece King Queen Staunton Chess Set - Queen Chess Piece Silhouette @clipartmax.com"></span>
+                <span class="square" id="square-61"><img src="https://www.clipartmax.com/png/small/58-581736_big-image-king-chess-piece-drawing.png" alt="Big Image - King Chess Piece Drawing @clipartmax.com"></span>
+                <span class="square" id="square-62"><img src="https://www.clipartmax.com/png/small/320-3206529_chess-piece-bishop-king-chessboard-alfil-ajedrez-para-colorear.png" alt="Chess Piece Bishop King Chessboard - Alfil Ajedrez Para Colorear @clipartmax.com"></span>
+                <span class="square" id="square-63"><img src="https://www.clipartmax.com/png/small/320-3206451_chess-piece-knight-white-and-black-in-chess-knight.png" alt="Chess Piece Knight White And Black In Chess - Knight @clipartmax.com"></span>
+                <span class="square" id="square-64"><img src="https://www.clipartmax.com/png/small/347-3478496_chess-piece-rook-staunton-chess-set-silhouette-rook.png" alt="Chess Piece Rook Staunton Chess Set Silhouette - Rook @clipartmax.com"></span>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <a href="https://www.clipartmax.com/middle/m2i8H7d3H7A0K9m2_big-image-king-chess-piece-drawing/" target="_blank">Big Image - King Chess Piece Drawing @clipartmax.com</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+</html>
