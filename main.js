@@ -35,11 +35,24 @@ let row8Squares = document.querySelectorAll('#row-8 span')
 let pieceSelected = false
 let pieceToMove = ''
 let tileMovedFrom = ''
+let possibleSquares = []
+
+let rowsAndSquares = {
+    '1' : [1,2,3,4,5,6,7,8],
+    '2' : [9,10,11,12,13,14,15,16],
+    '3' : [17,18,19,20,21,22,23,24],
+    '4' : [25,26,27,28,29,30,31,32],
+    '5' : [33,34,35,36,37,38,39,40],
+    '6' : [41,42,43,44,45,46,47,48],
+    '7' : [49,50,51,52,53,54,55,56],
+    '8' : [57,58,59,60,61,62,63,64],
+}
+
 function addClickEvent(rowOfSquares){
     for(let square of rowOfSquares){
         // console.log(square)
         square.addEventListener('click', () =>{
-            // console.log(square.innerHTML)
+            // console.log(square)
             if(!pieceSelected){
                 pieceSelected = true
                 square.style.border = '2px solid gold'
@@ -52,6 +65,7 @@ function addClickEvent(rowOfSquares){
                 square.innerHTML = pieceToMove
                 pieceSelected = false
                 revertBorder(tileMovedFrom)
+                revertPossibleMoveBorders(possibleSquares)
                 square.style.border = ''
                 pieceToMove = ''
             }
@@ -66,11 +80,159 @@ function revertBorder(tileNum){
     tile.style.border = ''
 }
 
+function revertPossibleMoveBorders(list){
+    for(let square of list){
+        let tile = document.querySelector(`#square-${square}`)
+        // console.log(tile)
+        tile.style.border = ''
+    }
+}
+
+function showPossibleMoves(list){
+    for(let num of list){
+        // console.log(num)
+        num = String(num)
+        let square = document.querySelector(`#square-${num}`)
+        square.style.border = '2px solid green'
+    }
+}
+
+function findRow(squareNum){
+    res = 0
+    if(squareNum < 9){
+        res = 1
+    }
+    else if(squareNum >= 9 && squareNum < 17){
+        res = 2
+    }
+    else if(squareNum >= 17 && squareNum < 25){
+        res = 3
+    }
+    else if(squareNum >= 25 && squareNum < 33){
+        res = 4
+    }
+    else if(squareNum >= 33 && squareNum < 41){
+        res = 5
+    }
+    else if(squareNum >= 41 && squareNum < 49){
+        res = 6
+    }
+    else if(squareNum >= 49 && squareNum < 57){
+        res = 7
+    }
+    else{
+        res = 8
+    }
+    return res
+}
+
+
 function findPossibleMoves(tileNum){
     if(pieceToMove.includes(whitePawnUrl)){
-        // console.log('this is a white pawn')
-        console.log(tileNum)
+        possibleSquares = []
+        let currentTile = Number(tileNum.split('-')[1])
+        if(currentTile >= 49){
+            possibleSquares.push(currentTile - 8)
+            possibleSquares.push(currentTile - 16)
+            showPossibleMoves(possibleSquares)
+        }
+        else {
+            possibleSquares.push(currentTile - 8)
+            showPossibleMoves(possibleSquares)
+        }
+    }
+    else if(pieceToMove.includes(blackPawnUrl)){
+        possibleSquares = []
+        let currentTile = Number(tileNum.split('-')[1])  
+        if(currentTile <= 16){
+            possibleSquares.push(currentTile + 8)
+            possibleSquares.push(currentTile + 16)
+            showPossibleMoves(possibleSquares)
+        }
+        else {
+            possibleSquares.push(currentTile + 8)
+            showPossibleMoves(possibleSquares)
+        }
+    }
+    else if(pieceToMove.includes(whiteRookUrl) || pieceToMove.includes(blackRookUrl)){
+        possibleSquares = []
+        let currentTile = Number(tileNum.split('-')[1])
+        let row = findRow(currentTile)
+        let restOfRow = rowsAndSquares[String(row)].filter(num => num !== currentTile)
         
+        for(let square of restOfRow){
+            possibleSquares.push(square)
+        }
+
+        if(currentTile % 8 === 1){
+            possibleSquares.push(1)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 2){
+            possibleSquares.push(2)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 3){
+            possibleSquares.push(3)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 4){
+            possibleSquares.push(4)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 5){
+            possibleSquares.push(5)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 6){
+            possibleSquares.push(6)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 7){
+            possibleSquares.push(7)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+        else if(currentTile % 8 === 0){
+            possibleSquares.push(8)
+            while(possibleSquares.length < 15){
+                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+            }
+            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+            showPossibleMoves(squaresWithCurrentSquare)
+        }
+    }
+    else if(pieceToMove.includes(whiteKnightUrl) || pieceToMove.includes(blackKnightUrl)){
+        possibleSquares = []
+        let currentTile = Number(tileNum.split('-')[1])
+        console.log(currentTile)
     }
 }
 
