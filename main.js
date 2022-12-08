@@ -208,7 +208,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 2){
         possibleSquares.push(2)
@@ -216,7 +216,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 3){
         possibleSquares.push(3)
@@ -224,7 +224,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 4){
         possibleSquares.push(4)
@@ -232,7 +232,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 5){
         possibleSquares.push(5)
@@ -240,7 +240,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 6){
         possibleSquares.push(6)
@@ -248,7 +248,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 7){
         possibleSquares.push(7)
@@ -256,7 +256,7 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 8){
         possibleSquares.push(8)
@@ -264,8 +264,9 @@ function findRookPossibleSquares(currentTile){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
         let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        showPossibleMoves(squaresWithCurrentSquare)
+        possibleSquares.concat(squaresWithCurrentSquare)
     }
+    return possibleSquares
 }
 
 
@@ -510,8 +511,9 @@ function findPossibleMoves(tileNum){
     }
     else if(pieceToMove.includes(whiteQueenUrl) || pieceToMove.includes(blackQueenUrl)){
         let currentTile = Number(tileNum.split('-')[1])
-        findBishopPossiblesSquares(currentTile)
-        // findRookPossibleSquares(currentTile)
+        let rookMoves = findRookPossibleSquares(currentTile)
+        let bishopMoves = findBishopPossiblesSquares(currentTile)
+        possibleSquares = bishopMoves.concat(rookMoves)
         showPossibleMoves(possibleSquares)
     }
 }
