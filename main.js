@@ -123,6 +123,151 @@ function findRow(squareNum){
     return res
 }
 
+function findBishopPossiblesSquares(currentTile){
+    possibleSquares = []
+    let row = findRow(currentTile)
+    let column = findColumn(currentTile)
+    let currentSquare = currentTile
+    let currentColumn = column
+    // console.log(currentTile)
+    if(row === 1){
+        while(currentColumn < 8){
+            // console.log(currentSquare + 9)
+            possibleSquares.push(currentSquare += 9)
+            currentColumn += 1
+        }
+        currentColumn = column
+        currentSquare = currentTile
+        while(currentColumn > 1){
+            possibleSquares.push(currentSquare += 7)
+            currentColumn -= 1
+        }
+    }
+    else if(row === 8){
+        while(currentColumn > 1){
+            possibleSquares.push(currentSquare -= 9)
+            currentColumn -= 1
+        }
+        currentColumn = column
+        currentSquare = currentTile
+        while(currentColumn < 8){
+            possibleSquares.push(currentSquare -= 7)
+            currentColumn += 1
+        }
+    }
+    else {
+        let currentRow = row
+        // console.log(currentSquare)
+        // console.log(currentColumn)
+        while(currentColumn < 8 && currentRow < 8){
+            possibleSquares.push(currentSquare += 9)
+            currentRow += 1
+            currentColumn += 1
+        }
+        currentColumn = column
+        currentRow = row
+        currentSquare = currentTile
+        while(currentColumn > 1 && currentRow < 8){
+            possibleSquares.push(currentSquare += 7)
+            currentColumn -= 1
+            currentRow += 1
+        }
+        currentColumn = column
+        currentRow = row
+        currentSquare = currentTile
+        while(currentColumn > 1 && currentRow > 1){
+            possibleSquares.push(currentSquare -= 9)
+            currentColumn -= 1
+            currentRow -= 1
+        }
+        currentColumn = column
+        currentRow = row
+        currentSquare = currentTile
+        while(currentColumn < 8 && currentRow > 1){
+            possibleSquares.push(currentSquare -= 7)
+            currentColumn += 1
+            currentRow -= 1
+        }
+    }
+    return possibleSquares
+}
+
+function findRookPossibleSquares(currentTile){
+    possibleSquares = []
+    let row = findRow(currentTile)
+    let column = findColumn(currentTile)
+    let restOfRow = rowsAndSquares[String(row)].filter(num => num !== currentTile)
+    
+    for(let square of restOfRow){
+        possibleSquares.push(square)
+    }
+
+    if(column === 1){
+        possibleSquares.push(1)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 2){
+        possibleSquares.push(2)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 3){
+        possibleSquares.push(3)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 4){
+        possibleSquares.push(4)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 5){
+        possibleSquares.push(5)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 6){
+        possibleSquares.push(6)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 7){
+        possibleSquares.push(7)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+    else if(column === 8){
+        possibleSquares.push(8)
+        while(possibleSquares.length < 15){
+            possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
+        }
+        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        showPossibleMoves(squaresWithCurrentSquare)
+    }
+}
+
 
 function findPossibleMoves(tileNum){
     if(pieceToMove.includes(whitePawnUrl)){
@@ -152,87 +297,16 @@ function findPossibleMoves(tileNum){
         }
     }
     else if(pieceToMove.includes(whiteRookUrl) || pieceToMove.includes(blackRookUrl)){
-        possibleSquares = []
         let currentTile = Number(tileNum.split('-')[1])
-        let row = findRow(currentTile)
-        let column = findColumn(currentTile)
-        let restOfRow = rowsAndSquares[String(row)].filter(num => num !== currentTile)
+        findRookPossibleSquares(currentTile)
         
-        for(let square of restOfRow){
-            possibleSquares.push(square)
-        }
-
-        if(column === 1){
-            possibleSquares.push(1)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 2){
-            possibleSquares.push(2)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 3){
-            possibleSquares.push(3)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 4){
-            possibleSquares.push(4)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 5){
-            possibleSquares.push(5)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 6){
-            possibleSquares.push(6)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 7){
-            possibleSquares.push(7)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
-        else if(column === 8){
-            possibleSquares.push(8)
-            while(possibleSquares.length < 15){
-                possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
-            }
-            let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-            showPossibleMoves(squaresWithCurrentSquare)
-        }
     }
     else if(pieceToMove.includes(whiteKnightUrl) || pieceToMove.includes(blackKnightUrl)){
         possibleSquares = []
         let currentTile = Number(tileNum.split('-')[1])
         let row = findRow(currentTile)
         let column = findColumn(currentTile)
-        console.log(currentTile)
+        // console.log(currentTile)
         if(column <= 6 && column >= 3){
             if(row <= 6 && row >= 3){
                 possibleSquares.push(currentTile - 17)
@@ -279,7 +353,7 @@ function findPossibleMoves(tileNum){
             showPossibleMoves(possibleSquares)
         }
         else if(column === 2 || column === 7){
-            console.log('column 2 or 7')
+            // console.log('column 2 or 7')
             if(row <= 6 && row >= 3){
                 if(column ===  2){
                     possibleSquares.push(currentTile - 17)
@@ -402,7 +476,7 @@ function findPossibleMoves(tileNum){
                 }
             }
             else if(row === 1 || row === 8){
-                console.log('row 1 or 8')
+                // console.log('row 1 or 8')
                 if(column === 1){
                     if(row === 1){
                         possibleSquares.push(currentTile + 17)
@@ -419,7 +493,7 @@ function findPossibleMoves(tileNum){
                         possibleSquares.push(currentTile + 6)
                     }
                     else{
-                        console.log('correct')
+                        // console.log('correct')
                         possibleSquares.push(currentTile - 17)
                         possibleSquares.push(currentTile - 10)
                     }
@@ -427,6 +501,17 @@ function findPossibleMoves(tileNum){
                 }
             }
         }
+        showPossibleMoves(possibleSquares)
+    }
+    else if(pieceToMove.includes(whiteBishopUrl) || pieceToMove.includes(blackBishopUrl)){
+        let currentTile = Number(tileNum.split('-')[1])
+        findBishopPossiblesSquares(currentTile)
+        showPossibleMoves(possibleSquares)
+    }
+    else if(pieceToMove.includes(whiteQueenUrl) || pieceToMove.includes(blackQueenUrl)){
+        let currentTile = Number(tileNum.split('-')[1])
+        findBishopPossiblesSquares(currentTile)
+        // findRookPossibleSquares(currentTile)
         showPossibleMoves(possibleSquares)
     }
 }
