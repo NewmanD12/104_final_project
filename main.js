@@ -90,7 +90,6 @@ function revertPossibleMoveBorders(list){
 
 function showPossibleMoves(list){
     for(let num of list){
-        // console.log(num)
         num = String(num)
         let square = document.querySelector(`#square-${num}`)
         square.style.border = '6px solid green'
@@ -207,66 +206,66 @@ function findRookPossibleSquares(currentTile){
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 2){
         possibleSquares.push(2)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 3){
         possibleSquares.push(3)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 4){
         possibleSquares.push(4)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 5){
         possibleSquares.push(5)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 6){
         possibleSquares.push(6)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 7){
         possibleSquares.push(7)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
-        possibleSquares.concat(squaresWithCurrentSquare)
+        // let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+        // possibleSquares.concat(squaresWithCurrentSquare)
     }
     else if(column === 8){
         possibleSquares.push(8)
         while(possibleSquares.length < 15){
             possibleSquares.push(possibleSquares[possibleSquares.length - 1] + 8)
         }
-        let squaresWithCurrentSquare = possibleSquares.filter(num => num !== currentTile)
         possibleSquares.concat(squaresWithCurrentSquare)
     }
-    return possibleSquares
+    let squaresWithoutCurrentSquare = possibleSquares.filter(num => num !== currentTile)
+    return squaresWithoutCurrentSquare
 }
 
 
@@ -299,8 +298,7 @@ function findPossibleMoves(tileNum){
     }
     else if(pieceToMove.includes(whiteRookUrl) || pieceToMove.includes(blackRookUrl)){
         let currentTile = Number(tileNum.split('-')[1])
-        findRookPossibleSquares(currentTile)
-        
+        showPossibleMoves(findRookPossibleSquares(currentTile))
     }
     else if(pieceToMove.includes(whiteKnightUrl) || pieceToMove.includes(blackKnightUrl)){
         possibleSquares = []
@@ -514,6 +512,77 @@ function findPossibleMoves(tileNum){
         let rookMoves = findRookPossibleSquares(currentTile)
         let bishopMoves = findBishopPossiblesSquares(currentTile)
         possibleSquares = bishopMoves.concat(rookMoves)
+        showPossibleMoves(possibleSquares)
+    }
+    else if(pieceToMove.includes(whiteKingUrl) || pieceToMove.includes(blackKingUrl)){
+        possibleSquares = []
+        let currentTile = Number(tileNum.split('-')[1])
+        let row = findRow(currentTile)
+        let column = findColumn(currentTile)
+        if(row === 1){
+            if(column === 1){
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile + 8)
+                possibleSquares.push(currentTile + 9)
+            }
+            else if(column === 8){
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile + 7)
+                possibleSquares.push(currentTile + 8)
+            }
+            else{
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile + 7)
+                possibleSquares.push(currentTile + 8)
+                possibleSquares.push(currentTile + 9)
+            }
+        }
+        else if(row === 8){
+            if(column === 1){
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile - 7)
+                possibleSquares.push(currentTile - 8)
+            }
+            else if(column === 8){
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile - 8)
+                possibleSquares.push(currentTile - 9)
+            }
+            else{
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile - 7)
+                possibleSquares.push(currentTile - 8)
+                possibleSquares.push(currentTile - 9)
+            }
+        }
+        else{
+            if(column === 1){
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile - 8)
+                possibleSquares.push(currentTile - 7)
+                possibleSquares.push(currentTile + 8)
+                possibleSquares.push(currentTile + 9)
+            }
+            else if(column === 8){
+                possibleSquares.push(currentTile - 8)
+                possibleSquares.push(currentTile - 9)
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile + 7)
+                possibleSquares.push(currentTile + 8)
+            }
+            else{
+                possibleSquares.push(currentTile - 7)
+                possibleSquares.push(currentTile - 8)
+                possibleSquares.push(currentTile - 9)
+                possibleSquares.push(currentTile - 1)
+                possibleSquares.push(currentTile + 1)
+                possibleSquares.push(currentTile + 7)
+                possibleSquares.push(currentTile + 8)
+                possibleSquares.push(currentTile + 9)
+            }
+        }
         showPossibleMoves(possibleSquares)
     }
 }
