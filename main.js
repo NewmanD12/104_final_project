@@ -73,9 +73,7 @@ function addClickEvent(rowOfSquares){
                 // console.log(square.style)
                 let movedToTile = Number(square.id.split('-')[1])
                 let row = findRow(movedToTile)
-                // console.log(pieceToMove)
                 if(pieceToMove.includes(whitePawnUrl) && row === 1){
-                    // console.log('you made it!')
                     let div = document.createElement('div')
                     let sentence = document.createElement('div')
                     let queenImage = document.createElement('img')
@@ -183,7 +181,6 @@ function revertPossibleMoveBorders(list){
 
 function showPossibleMoves(list, currentTile){
     let currentSquare = document.querySelector(`#square-${currentTile}`)
-    // console.log(currentSquare)
     for(let num of list){
         num = String(num)
         let square = document.querySelector(`#square-${num}`)
@@ -345,11 +342,13 @@ function findRookPossibleSquares(currentTile){
     return squaresWithoutCurrentSquare
 }
 
-
 function findPossibleMoves(tileNum){
     if(pieceToMove.includes(whitePawnUrl)){
         possibleSquares = []
         let currentTile = Number(tileNum.split('-')[1])
+        let column = findColumn(currentTile)
+        console.log(column)
+        
         if(currentTile >= 49){
             
             let possibleMove = document.querySelector(`#square-${currentTile - 8}`)
@@ -357,17 +356,30 @@ function findPossibleMoves(tileNum){
             let possibleMove3 = document.querySelector(`#square-${currentTile - 7}`)
             let possibleMove4 = document.querySelector(`#square-${currentTile - 9}`)
             
-            if(!possibleMove.innerHTML.includes('img')){
-                possibleSquares.push(currentTile - 8)
-            }
-            if(!possibleMove2.innerHTML.includes('img') && possibleSquares.length > 0){
-                possibleSquares.push(currentTile - 16)
-            }
-            if(possibleMove3.innerHTML.includes('img')){
-                possibleSquares.push(currentTile - 7)
-            }
-            if(possibleMove4.innerHTML.includes('img')){
-                possibleSquares.push(currentTile - 9)
+            if(column !== 8){
+                if(!possibleMove.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile - 8)
+                }
+                if(!possibleMove2.innerHTML.includes('img') && possibleSquares.length > 0){
+                    possibleSquares.push(currentTile - 16)
+                }
+                if(possibleMove3.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile - 7)
+                }
+                if(possibleMove4.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile - 9)
+                }
+            } 
+            else{
+                if(!possibleMove.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile - 8)
+                }
+                if(!possibleMove2.innerHTML.includes('img') && possibleSquares.length > 0){
+                    possibleSquares.push(currentTile - 16)
+                }
+                if(possibleMove4.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile - 9)
+                }
             }
 
             showPossibleMoves(possibleSquares, currentTile)
@@ -398,8 +410,9 @@ function findPossibleMoves(tileNum){
             let possibleMove3 = document.querySelector(`#square-${currentTile + 7}`)
             let possibleMove4 = document.querySelector(`#square-${currentTile + 9}`)
             let row = findRow(currentTile)
+            let column = findColumn(currentTile)
 
-            if(row > 2){
+            if(column !== 1){
                 if(!possibleMove.innerHTML.includes('img')){
                     possibleSquares.push(currentTile + 8)
                 }
@@ -412,21 +425,13 @@ function findPossibleMoves(tileNum){
                 if(possibleMove4.innerHTML.includes('img')){
                     possibleSquares.push(currentTile + 9)
                 }
-            }
+            } 
             else{
-                let possibleMove = document.querySelector(`#square-${currentTile + 8}`)
-                let possibleMove2 = document.querySelector(`#square-${currentTile + 16}`)
-                let possibleMove3 = document.querySelector(`#square-${currentTile + 7}`)
-                let possibleMove4 = document.querySelector(`#square-${currentTile + 9}`)
-                
                 if(!possibleMove.innerHTML.includes('img')){
                     possibleSquares.push(currentTile + 8)
                 }
                 if(!possibleMove2.innerHTML.includes('img') && possibleSquares.length > 0){
                     possibleSquares.push(currentTile + 16)
-                }
-                if(possibleMove3.innerHTML.includes('img')){
-                    possibleSquares.push(currentTile + 7)
                 }
                 if(possibleMove4.innerHTML.includes('img')){
                     possibleSquares.push(currentTile + 9)
