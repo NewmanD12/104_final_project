@@ -64,12 +64,13 @@ function addClickEvent(rowOfSquares){
         square.addEventListener('click', () =>{
             if(!pieceSelected){
                 pieceSelected = true
-                square.style.border = '2px solid gold'
+                square.style.border = '4px solid gold'
                 pieceToMove = square.innerHTML
                 square.innerHTML = ''
                 tileMovedFrom = square.id
                 findPossibleMoves(square.id)
             } else {
+                // console.log(square.style)
                 let movedToTile = Number(square.id.split('-')[1])
                 let row = findRow(movedToTile)
                 // console.log(pieceToMove)
@@ -91,13 +92,11 @@ function addClickEvent(rowOfSquares){
                         div.remove()
                     })
                     rookImage.addEventListener('click', () =>{
-                        console.log('you clicked the rook')
                         let image = imageTagFunction(whiteRookUrl)
                         square.innerHTML = image
                         div.remove()
                     })
                     knightImage.addEventListener('click', () =>{
-                        console.log('you clicked the knight')
                         let image = imageTagFunction(whiteKnightUrl)
                         square.innerHTML = image
                         div.remove()
@@ -117,7 +116,6 @@ function addClickEvent(rowOfSquares){
 
                 }
                 else if(pieceToMove.includes(blackPawnUrl) && row === 8){
-                    // console.log('you made it!')
                     let div = document.createElement('div')
                     let sentence = document.createElement('div')
                     let queenImage = document.createElement('img')
@@ -414,12 +412,27 @@ function findPossibleMoves(tileNum){
                 if(possibleMove4.innerHTML.includes('img')){
                     possibleSquares.push(currentTile + 9)
                 }
-                showPossibleMoves(possibleSquares, currentTile)
             }
             else{
-                console.log('you are now in row 2')
+                let possibleMove = document.querySelector(`#square-${currentTile + 8}`)
+                let possibleMove2 = document.querySelector(`#square-${currentTile + 16}`)
+                let possibleMove3 = document.querySelector(`#square-${currentTile + 7}`)
+                let possibleMove4 = document.querySelector(`#square-${currentTile + 9}`)
+                
+                if(!possibleMove.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile + 8)
+                }
+                if(!possibleMove2.innerHTML.includes('img') && possibleSquares.length > 0){
+                    possibleSquares.push(currentTile + 16)
+                }
+                if(possibleMove3.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile + 7)
+                }
+                if(possibleMove4.innerHTML.includes('img')){
+                    possibleSquares.push(currentTile + 9)
+                }
             }
-            
+            showPossibleMoves(possibleSquares, currentTile)
         }
         else {
             let possibleMove = document.querySelector(`#square-${currentTile + 8}`)
